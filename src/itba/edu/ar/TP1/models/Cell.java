@@ -12,12 +12,15 @@ public class Cell {
     }
 
     public void analyze(Double interactionRadius, Set<Cell> neighbours) {
-        neighbours.forEach(cell -> cell.getParticles().forEach(neighbour -> particles.forEach(particle -> {
-            if (particle.isNeighbour(neighbour, interactionRadius)) {
-                particle.addNeighbour(neighbour);
-                neighbour.addNeighbour(particle);
-            }
-        })));
+        neighbours.forEach(cell -> {
+            if (cell != null)
+                cell.getParticles().forEach(neighbour -> particles.forEach(particle -> {
+                    if (particle.isNeighbour(neighbour, interactionRadius)) {
+                        particle.addNeighbour(neighbour);
+                        neighbour.addNeighbour(particle);
+                    }
+                }));
+        });
     }
 
     public Set<Particle> getParticles(){

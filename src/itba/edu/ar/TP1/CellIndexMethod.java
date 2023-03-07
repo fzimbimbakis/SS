@@ -82,9 +82,14 @@ public class CellIndexMethod {
 
         for (int r = 0; r < this.cells.length; r++) {
             for (int c = 0; c < this.cells[r].length; c++) {
-                this.cells[r][c].analyze(interactionRadius, getNeighbours(r, c));
+                if (this.cells[r][c] != null)
+                    this.cells[r][c].analyze(interactionRadius, getNeighbours(r, c));
             }
         }
 
+    }
+
+    public Set<Particle> getParticles() {
+        return particles;
     }
 }

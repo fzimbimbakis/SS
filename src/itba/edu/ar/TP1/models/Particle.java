@@ -73,8 +73,19 @@ public class Particle {
         this.radius = radius;
     }
 
-    public boolean isNeighbour(Particle neighbour, Double interactionRadius){
+    public boolean isNeighbour(Particle neighbour, Double interactionRadius) {
         return (Math.sqrt(Math.pow(neighbour.getX() - this.x, 2) + Math.pow(neighbour.getY() - this.y, 2)) - neighbour.getRadius() - radius) < interactionRadius;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+
+
+    public String neighboursToString() {
+        StringBuilder builder = new StringBuilder(toString());
+        neighbours.forEach(particle -> builder.append(", ").append(particle));
+        return builder.append("\n").toString();
+    }
 }
