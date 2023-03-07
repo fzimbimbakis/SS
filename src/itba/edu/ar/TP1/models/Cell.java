@@ -21,6 +21,19 @@ public class Cell {
                     }
                 }));
         });
+
+        Object[] array = particles.toArray();
+        Particle p1, p2;
+        for (int i = 0; i < array.length; i++) {
+            p1 = (Particle) array[i];
+            for (int j = i + 1; j < array.length; j++) {
+                p2 = (Particle) array[j];
+                if (p1.isNeighbour(p2, interactionRadius)) {
+                    p1.addNeighbour(p2);
+                    p2.addNeighbour(p1);
+                }
+            }
+        }
     }
 
     public Set<Particle> getParticles(){
