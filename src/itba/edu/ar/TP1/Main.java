@@ -28,7 +28,7 @@ public class Main {
         Integer N;
 //        Double time;
         Set<Particle> particles = new HashSet<>();
-        Integer id = 1;
+        Integer id = 0;
 
         try {
             BufferedReader lectorS = new BufferedReader(new FileReader(staticFilePath));
