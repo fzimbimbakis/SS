@@ -28,13 +28,13 @@ public class Particle {
         return id.equals(particle.id);
     }
 
-    public Integer getindexX(Double L, Integer M){
+    public Integer getIndexX(Double L, Integer M){
         if(this.x > L || this.x < 0)
             throw new IllegalArgumentException("Paticle " + id + " is out of bounds.");
         return (int) (x/(L/M));
     }
 
-    public Integer getindexY(Double L, Integer M){
+    public Integer getIndexY(Double L, Integer M){
         if(this.y > L || this.y < 0)
             throw new IllegalArgumentException("Paticle " + id + " is out of bounds.");
         return (int) (y/(L/M));
@@ -74,7 +74,11 @@ public class Particle {
     }
 
     public boolean isNeighbour(Particle neighbour, Double interactionRadius) {
-        return (Math.sqrt(Math.pow(neighbour.getX() - this.x, 2) + Math.pow(neighbour.getY() - this.y, 2)) - neighbour.getRadius() - radius) < interactionRadius;
+        return isNeighbour(neighbour.getX(), neighbour.getY(), neighbour.getRadius(), interactionRadius);
+    }
+
+    public boolean isNeighbour(Double neighbourX, Double neighbourY, Double rad, Double interactionRadius){
+        return (Math.sqrt(Math.pow(neighbourX - this.x, 2) + Math.pow(neighbourY - this.y, 2)) - rad - radius) < interactionRadius;
     }
 
     @Override

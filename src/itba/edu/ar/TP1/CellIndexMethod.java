@@ -4,7 +4,8 @@ package itba.edu.ar.TP1;
 import itba.edu.ar.TP1.models.Cell;
 import itba.edu.ar.TP1.models.Particle;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class CellIndexMethod {
@@ -16,28 +17,26 @@ public class CellIndexMethod {
     private final Set<Particle> particles;
     protected final Cell[][] cells;
 
-    protected Set<Cell> getNeighbours(Integer row, Integer col) {
-        Set<Cell> neighbours = new HashSet<>();
+    protected Map<Cell.NEIGHBOURS_POSITION, Cell> getNeighbours(Integer row, Integer col) {
+        Map<Cell.NEIGHBOURS_POSITION, Cell> neighbours = new HashMap<>();
 
-        if (row > 0) {
-            neighbours.add(this.cells[row - 1][col]);
-            if (col < M - 1)
-                neighbours.add(this.cells[row - 1][col + 1]);
+        if (row < M - 1) {
+            neighbours.put(Cell.NEIGHBOURS_POSITION.TOP, this.cells[row + 1][col]);
+            if (col < M - 1) neighbours.put(Cell.NEIGHBOURS_POSITION.TOP_RIGHT, this.cells[row + 1][col + 1]);
         }
 
         if (col < M - 1) {
-            neighbours.add(this.cells[row][col + 1]);
-            if (row < M - 1)
-                neighbours.add(this.cells[row + 1][col + 1]);
+            neighbours.put(Cell.NEIGHBOURS_POSITION.RIGHT, this.cells[row][col + 1]);
+            if (row > 0) neighbours.put(Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT, this.cells[row - 1][col + 1]);
         }
 
         return neighbours;
     }
 
-    private void fillCells(Set<Particle> particles) {
+    protected void fillCells(Set<Particle> particles) {
         particles.forEach(particle -> {
-            Integer indexX = particle.getindexX(L, M);
-            Integer indexY = particle.getindexY(L, M);
+            Integer indexX = particle.getIndexX(L, M);
+            Integer indexY = particle.getIndexY(L, M);
 
             if (cells[indexX][indexY] == null) {
                 cells[indexX][indexY] = new Cell();
@@ -82,8 +81,7 @@ public class CellIndexMethod {
 
         for (int r = 0; r < this.cells.length; r++) {
             for (int c = 0; c < this.cells[r].length; c++) {
-                if (this.cells[r][c] != null)
-                    this.cells[r][c].analyze(interactionRadius, getNeighbours(r, c));
+                if (this.cells[r][c] != null) this.cells[r][c].analyze(interactionRadius, getNeighbours(r, c), L);
             }
         }
 

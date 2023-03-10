@@ -78,6 +78,9 @@ public class Main {
             CellIndexMethod cellIndexMethod = new CellIndexMethod(L, N, INTERACTION_RADIUS, M, particles);
             cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
 
+            CellIndexMethodPeriodic cellIndexMethodPeriodic = new CellIndexMethodPeriodic(L, N, INTERACTION_RADIUS, M, particles);
+            cellIndexMethodPeriodic.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
+
         } catch (IOException e) {
             System.out.println("Error opening file " + staticFilePath);
             e.printStackTrace();
