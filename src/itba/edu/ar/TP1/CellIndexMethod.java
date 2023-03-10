@@ -21,13 +21,13 @@ public class CellIndexMethod {
         Map<Cell.NEIGHBOURS_POSITION, Cell> neighbours = new HashMap<>();
 
         if (row < M - 1) {
-            neighbours.put(Cell.NEIGHBOURS_POSITION.TOP, this.cells[row + 1][col]);
-            if (col < M - 1) neighbours.put(Cell.NEIGHBOURS_POSITION.TOP_RIGHT, this.cells[row + 1][col + 1]);
+            neighbours.put(Cell.NEIGHBOURS_POSITION.TOP, this.cells[col][row + 1]);
+            if (col < M - 1) neighbours.put(Cell.NEIGHBOURS_POSITION.TOP_RIGHT, this.cells[col + 1][row + 1]);
         }
 
         if (col < M - 1) {
-            neighbours.put(Cell.NEIGHBOURS_POSITION.RIGHT, this.cells[row][col + 1]);
-            if (row > 0) neighbours.put(Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT, this.cells[row - 1][col + 1]);
+            neighbours.put(Cell.NEIGHBOURS_POSITION.RIGHT, this.cells[col + 1][row]);
+            if (row > 0) neighbours.put(Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT, this.cells[col + 1][row - 1]);
         }
 
         return neighbours;
@@ -79,9 +79,9 @@ public class CellIndexMethod {
         this.cells = new Cell[M][M];
         fillCells(particles);
 
-        for (int r = 0; r < this.cells.length; r++) {
-            for (int c = 0; c < this.cells[r].length; c++) {
-                if (this.cells[r][c] != null) this.cells[r][c].analyze(interactionRadius, getNeighbours(r, c), L);
+        for (int c = 0; c < this.cells.length; c++) {
+            for (int r = 0; r < this.cells[c].length; r++) {
+                if (this.cells[c][r] != null) this.cells[c][r].analyze(interactionRadius, getNeighbours(r, c), L);
             }
         }
 
