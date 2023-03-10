@@ -2,9 +2,10 @@
 ..DS_Store/
 .vs/
 
-
-
-
+resources/TP1/times.png
+resources/TP1/particles.png
+resources/TP1/Dynamic.txt
+resources/TP1/optimusM.txt
 
 # These are some examples of commonly ignored file patterns.
 # You should customize this list as applicable to your project.
@@ -29,9 +30,6 @@ dist/
 
 # Maven
 target/
-
-# JetBrains IDE
-.idea/
 
 # Unit test reports
 TEST*.xml
@@ -139,3 +137,4 @@ fabric.properties
 
 webapp/src/main/resources/key
 webapp/src/main/resources/info
+/resources/TP1/optimusM.txt

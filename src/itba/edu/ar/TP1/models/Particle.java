@@ -49,6 +49,10 @@ public class Particle {
         neighbours.add(neighbour);
     }
 
+    public void clearNeighbours(){
+        neighbours.clear();
+    }
+
     public Double getX() {
         return x;
     }

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Main {
+public class MainInputFiles {
 
     static final int PARTICLE_RADIUS_INDEX = 0;
     static final int PARTICLE_X_INDEX = 0;
@@ -24,11 +24,11 @@ public class Main {
         if (staticFilePath == null || dynamicFilePath == null)
             throw new IllegalArgumentException("Dynamic or static file path not provided");
 
-        Double L;
-        Integer N;
+        double L;
+        int N;
 //        Double time;
         Set<Particle> particles = new HashSet<>();
-        Integer id = 0;
+        int id = 0;
 
         try {
             BufferedReader lectorS = new BufferedReader(new FileReader(staticFilePath));
@@ -37,12 +37,12 @@ public class Main {
             String staticLine = lectorS.readLine();
             if (staticLine == null)
                 throw new IllegalArgumentException("Wrong static file format");
-            N = Integer.valueOf(staticLine);
+            N = Integer.parseInt(staticLine);
 
             staticLine = lectorS.readLine();
             if (staticLine == null)
                 throw new IllegalArgumentException("Wrong static file format");
-            L = Double.valueOf(staticLine);
+            L = Double.parseDouble(staticLine);
 
             String dynamicLine = lectorD.readLine();
             if (dynamicLine == null)
