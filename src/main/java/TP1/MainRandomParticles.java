@@ -114,14 +114,14 @@ public class MainRandomParticles {
 
         CellIndexMethod cellIndexMethod;
         long startTime;
-
+        cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, M, particles);
         try {
             FileWriter myWriter = new FileWriter("resources/TP1/optimusM.txt");
             for (int i = M; i > 0 ; i--) {
                 startTime = System.currentTimeMillis();
                 cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, i, particles);
-                cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
                 myWriter.write(i + " " + (System.currentTimeMillis() - startTime) + "\n");
+                cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
                 cellIndexMethod.clearNeighbours();
             }
 
