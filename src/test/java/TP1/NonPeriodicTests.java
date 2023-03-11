@@ -1,7 +1,6 @@
-package itba.edu.ar.TP1.Tests;
+package TP1;
 
-import itba.edu.ar.TP1.CellIndexMethod;
-import itba.edu.ar.TP1.models.Particle;
+import TP1.models.Particle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,13 +33,9 @@ class NonPeriodicTests {
 
     static final Set<Particle> particles = new HashSet<>();
     static final Map<Integer, Particle> map_A = new HashMap<>();
-    static final List<Integer> yesIds = new ArrayList<>();
-    static final List<Integer> noIds = new ArrayList<>();
 
     @BeforeEach
     void before() {
-        yesIds.removeIf(id -> true);
-        noIds.removeIf(id -> true);
         particles.removeIf(p -> true);
     }
 

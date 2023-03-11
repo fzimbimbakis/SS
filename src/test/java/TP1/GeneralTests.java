@@ -1,7 +1,6 @@
-package itba.edu.ar.TP1.Tests;
+package TP1;
 
-import itba.edu.ar.TP1.CellIndexMethodPeriodic;
-import itba.edu.ar.TP1.models.Particle;
+import TP1.models.Particle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

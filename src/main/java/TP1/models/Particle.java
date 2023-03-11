@@ -1,4 +1,4 @@
-package itba.edu.ar.TP1.models;
+package TP1.models;
 
 import java.util.HashSet;
 import java.util.Objects;

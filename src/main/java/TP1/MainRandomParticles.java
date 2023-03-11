@@ -1,6 +1,6 @@
-package itba.edu.ar.TP1;
+package TP1;
 
-import itba.edu.ar.TP1.models.Particle;
+import TP1.models.Particle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,7 +23,7 @@ public class MainRandomParticles {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("src/main/java/itba/edu/ar/TP1/config.json"))
+        try (FileReader reader = new FileReader("src/main/java/TP1/config.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);

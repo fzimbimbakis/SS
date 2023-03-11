@@ -1,4 +1,4 @@
-package itba.edu.ar.TP1.models;
+package TP1.models;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -18,9 +18,7 @@ public class Cell {
         if (particles.isEmpty())
             return;
 
-        neighbours.keySet().forEach(key -> {
-            analyzeCell(neighbours.get(key), key, interactionRadius, L);
-        });
+        neighbours.keySet().forEach(key -> analyzeCell(neighbours.get(key), key, interactionRadius, L));
 
         analyzeThisCell(interactionRadius);
     }

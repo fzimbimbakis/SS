@@ -1,7 +1,7 @@
-package itba.edu.ar.TP1;
+package TP1;
 
-import itba.edu.ar.TP1.models.Cell;
-import itba.edu.ar.TP1.models.Particle;
+import TP1.models.Cell;
+import TP1.models.Particle;
 
 import java.util.HashMap;
 import java.util.Map;
