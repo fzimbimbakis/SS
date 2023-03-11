@@ -1,10 +1,11 @@
 from matplotlib import pyplot as plt
 
 #poner la particula y sus respectivos vecinos
-particle = 65
-neighbours = [23]
+particle = 94
+neighbours = [52, 10, 58, 91]
 #nombre del archivo donde se encuentran las coordenadas de todas las particulas
-dynamic_file ="resources/TP1/Dynamic1.txt"
+dynamic_file ="resources/TP1/Dynamic.txt"
+times_file = "resources/TP1/optimusM.txt"
 
 def read_particles_file(name):
     x_list = []
@@ -17,13 +18,15 @@ def read_particles_file(name):
                 y_list.append(float(y_aux))
     return x_list, y_list
 
-def read_radius_file(name):
-    radius_list = []
+def read_times_file(name):
+    m_list = []
+    time_list = []
     with open(name) as archivo:
         for linea in archivo:
-            radius_aux = linea.split().__getitem__(0)
-            radius_list.append(float(radius_aux))
-    return radius_list
+            x_aux, y_aux = linea.split()
+            m_list.append(int(x_aux))
+            time_list.append(int(y_aux))
+    return m_list, time_list
 
 
 
@@ -43,6 +46,16 @@ if __name__ == '__main__':
         if not highlight:
             plt.plot(x[i], y[i], 'co')
         #plt.annotate(str(i), (x[i], y[i]))
+    plt.title('Representacion de las particulas')
+    plt.savefig("resources/TP1/particles.png")
+    plt.clf()
 
-    plt.show()
+
+    x, y = read_times_file(times_file)
+    plt.title('M optimo')
+    plt.ylabel('Tiempo (ms)')
+    plt.xlabel('M (numero de celdas) ')
+    plt.scatter(x, y)
+    plt.plot(x, y)
+    plt.savefig("resources/TP1/times.png")
 

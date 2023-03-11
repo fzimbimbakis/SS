@@ -1,6 +1,9 @@
 package itba.edu.ar.TP1;
 
 import itba.edu.ar.TP1.models.Particle;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,27 +11,45 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Main {
+public class MainInputFiles {
 
     static final int PARTICLE_RADIUS_INDEX = 0;
     static final int PARTICLE_X_INDEX = 0;
     static final int PARTICLE_Y_INDEX = 1;
-    static final Double INTERACTION_RADIUS = 1.0;
-    static final Integer M = 58;
 
     public static void main(String[] args) {
 
-        String staticFilePath = args[0];
-        String dynamicFilePath = args[1];
+        double interactionRadius = 0.0;
+        int M = 0;
+        String staticFilePath = null;
+        String dynamicFilePath = null;
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader("src/main/java/itba/edu/ar/TP1/config.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonObject = (JSONObject)obj;
+
+            interactionRadius = Double.parseDouble(jsonObject.get("interactionRadius").toString());
+            M = Integer.parseInt(jsonObject.get("M").toString());
+            staticFilePath = jsonObject.get("staticFile").toString();
+            dynamicFilePath = jsonObject.get("dynamicFile").toString();
+
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
 
         if (staticFilePath == null || dynamicFilePath == null)
             throw new IllegalArgumentException("Dynamic or static file path not provided");
 
-        Double L;
-        Integer N;
+        double L;
+        int N;
 //        Double time;
         Set<Particle> particles = new HashSet<>();
-        Integer id = 0;
+        int id = 0;
 
         try {
             BufferedReader lectorS = new BufferedReader(new FileReader(staticFilePath));
@@ -37,12 +58,12 @@ public class Main {
             String staticLine = lectorS.readLine();
             if (staticLine == null)
                 throw new IllegalArgumentException("Wrong static file format");
-            N = Integer.valueOf(staticLine);
+            N = Integer.parseInt(staticLine);
 
             staticLine = lectorS.readLine();
             if (staticLine == null)
                 throw new IllegalArgumentException("Wrong static file format");
-            L = Double.valueOf(staticLine);
+            L = Double.parseDouble(staticLine);
 
             String dynamicLine = lectorD.readLine();
             if (dynamicLine == null)
@@ -75,7 +96,7 @@ public class Main {
             lectorS.close();
             lectorD.close();
 
-            CellIndexMethod cellIndexMethod = new CellIndexMethod(L, N, INTERACTION_RADIUS, M, particles);
+            CellIndexMethod cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, M, particles);
             cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
 
             CellIndexMethodPeriodic cellIndexMethodPeriodic = new CellIndexMethodPeriodic(L, N, INTERACTION_RADIUS, M, particles);

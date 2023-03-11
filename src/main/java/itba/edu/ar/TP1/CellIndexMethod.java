@@ -64,7 +64,7 @@ public class CellIndexMethod {
         //// Check L, M and interactionRadius
         Double maxRadius = particles.stream().map(Particle::getRadius).max(Double::compareTo).get();
         if (L / M <= interactionRadius + maxRadius * 2)
-            throw new IllegalArgumentException("Illegal M. Does not comply with L/M <= interactionRadius - maxRadius*2");
+            throw new IllegalArgumentException("Illegal M. Does not comply with L/M <= interactionRadius + maxRadius*2");
     }
 
     public CellIndexMethod(Double l, Integer n, Double interactionRadius, Integer m, Set<Particle> particles) {
@@ -89,5 +89,9 @@ public class CellIndexMethod {
 
     public Set<Particle> getParticles() {
         return particles;
+    }
+
+    public void clearNeighbours(){
+        particles.forEach(Particle::clearNeighbours);
     }
 }

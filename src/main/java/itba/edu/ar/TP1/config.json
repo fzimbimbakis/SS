@@ -1,0 +1,10 @@
+{
+  "interactionRadius": 1.0,
+  "particleRadius": 0.25,
+  "L": 20.0,
+  "N": 100,
+  "M": 13,
+  "staticFile": "./resources/TP1/Static.txt",
+  "dynamicFile": "./resources/TP1/Dynamic.txt"
+}
+
