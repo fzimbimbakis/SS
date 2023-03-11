@@ -17,17 +17,17 @@ public class CellIndexMethod {
     private final Set<Particle> particles;
     protected final Cell[][] cells;
 
-    protected Map<Cell.NEIGHBOURS_POSITION, Cell> getNeighbours(Integer row, Integer col) {
-        Map<Cell.NEIGHBOURS_POSITION, Cell> neighbours = new HashMap<>();
+    protected Map<Cell, Cell.NEIGHBOURS_POSITION> getNeighbours(Integer row, Integer col) {
+        Map<Cell, Cell.NEIGHBOURS_POSITION> neighbours = new HashMap<>();
 
         if (row < M - 1) {
-            neighbours.put(Cell.NEIGHBOURS_POSITION.TOP, this.cells[col][row + 1]);
-            if (col < M - 1) neighbours.put(Cell.NEIGHBOURS_POSITION.TOP_RIGHT, this.cells[col + 1][row + 1]);
+            neighbours.put(this.cells[col][row + 1], Cell.NEIGHBOURS_POSITION.TOP);
+            if (col < M - 1) neighbours.put(this.cells[col + 1][row + 1], Cell.NEIGHBOURS_POSITION.TOP_RIGHT);
         }
 
         if (col < M - 1) {
-            neighbours.put(Cell.NEIGHBOURS_POSITION.RIGHT, this.cells[col + 1][row]);
-            if (row > 0) neighbours.put(Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT, this.cells[col + 1][row - 1]);
+            neighbours.put(this.cells[col + 1][row], Cell.NEIGHBOURS_POSITION.RIGHT);
+            if (row > 0) neighbours.put(this.cells[col + 1][row - 1], Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT);
         }
 
         return neighbours;
@@ -63,7 +63,7 @@ public class CellIndexMethod {
 
         //// Check L, M and interactionRadius
         Double maxRadius = particles.stream().map(Particle::getRadius).max(Double::compareTo).get();
-        if (L / M <= interactionRadius - maxRadius * 2)
+        if (L / M <= interactionRadius + maxRadius * 2)
             throw new IllegalArgumentException("Illegal M. Does not comply with L/M <= interactionRadius - maxRadius*2");
     }
 

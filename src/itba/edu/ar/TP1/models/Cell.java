@@ -13,13 +13,13 @@ public class Cell {
         this.particles = new HashSet<>();
     }
 
-    public void analyze(Double interactionRadius, Map<Cell.NEIGHBOURS_POSITION, Cell> neighbours, Double L) {
+    public void analyze(Double interactionRadius, Map<Cell, Cell.NEIGHBOURS_POSITION> neighbours, Double L) {
 
         if (particles.isEmpty())
             return;
 
         neighbours.keySet().forEach(key -> {
-            analyzeCell(key, neighbours.get(key), interactionRadius, L);
+            analyzeCell(neighbours.get(key), key, interactionRadius, L);
         });
 
         analyzeThisCell(interactionRadius);
@@ -52,6 +52,7 @@ public class Cell {
             case GHOST_TOP:
             case GHOST_TOP_RIGHT:
                 return y + L;
+            case GHOST_BOTTOM:
             case GHOST_BOTTOM_RIGHT:
                 return y - L;
             default:
@@ -94,6 +95,7 @@ public class Cell {
         GHOST_TOP,
         GHOST_TOP_RIGHT,
         GHOST_RIGHT,
-        GHOST_BOTTOM_RIGHT
+        GHOST_BOTTOM_RIGHT,
+        GHOST_BOTTOM
     }
 }

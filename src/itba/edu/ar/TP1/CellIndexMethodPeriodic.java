@@ -14,16 +14,32 @@ public class CellIndexMethodPeriodic extends CellIndexMethod {
     }
 
     @Override
-    protected Map<Cell.NEIGHBOURS_POSITION, Cell> getNeighbours(Integer col, Integer row) {
-        Map<Cell.NEIGHBOURS_POSITION, Cell> neighbours = new HashMap<>();
+    protected Map<Cell, Cell.NEIGHBOURS_POSITION> getNeighbours(Integer row, Integer col) {
+        Map<Cell, Cell.NEIGHBOURS_POSITION> neighbours = new HashMap<>();
 
-        neighbours.put(row == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_TOP : Cell.NEIGHBOURS_POSITION.TOP, this.cells[col][(row + 1) % M]);
+        neighbours.put(this.cells[col][(row + 1) % M], row == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_TOP : Cell.NEIGHBOURS_POSITION.TOP);
 
-        neighbours.put(row == M - 1 || col == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_TOP_RIGHT : Cell.NEIGHBOURS_POSITION.TOP_RIGHT, this.cells[(col + 1) % M][(row + 1) % M]);
+        neighbours.put(this.cells[(col + 1) % M][row], col == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_RIGHT : Cell.NEIGHBOURS_POSITION.RIGHT);
 
-        neighbours.put(col == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_RIGHT : Cell.NEIGHBOURS_POSITION.RIGHT, this.cells[(col + 1) % M][row]);
+        if(col == M - 1){
+            if(row == M - 1)
+                neighbours.put(this.cells[0][0], Cell.NEIGHBOURS_POSITION.GHOST_TOP_RIGHT);
+            else neighbours.put(this.cells[0][row + 1], Cell.NEIGHBOURS_POSITION.GHOST_RIGHT);
+        }else{
+            if(row == M - 1)
+                neighbours.put(this.cells[col + 1][0], Cell.NEIGHBOURS_POSITION.GHOST_TOP);
+            else neighbours.put(this.cells[col + 1][row + 1], Cell.NEIGHBOURS_POSITION.TOP_RIGHT);
+        }
 
-        neighbours.put(row == 0 || col == M - 1 ? Cell.NEIGHBOURS_POSITION.GHOST_BOTTOM_RIGHT : Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT, row == 0 ? this.cells[(col + 1) % M][M - 1] : this.cells[(col + 1) % M][(row - 1) % M]);
+        if(col == M - 1){
+            if(row == 0)
+                neighbours.put(this.cells[(col + 1) % M][M - 1], Cell.NEIGHBOURS_POSITION.GHOST_BOTTOM_RIGHT);
+            else neighbours.put(this.cells[0][row - 1], Cell.NEIGHBOURS_POSITION.GHOST_RIGHT);
+        }else {
+            if (row == 0)
+                neighbours.put(this.cells[col + 1][M - 1], Cell.NEIGHBOURS_POSITION.GHOST_BOTTOM);
+            else neighbours.put(this.cells[col + 1][row - 1], Cell.NEIGHBOURS_POSITION.BOTTOM_RIGHT);
+        }
 
         return neighbours;
     }

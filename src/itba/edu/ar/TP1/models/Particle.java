@@ -92,4 +92,12 @@ public class Particle {
         neighbours.forEach(particle -> builder.append(", ").append(particle));
         return builder.append("\n").toString();
     }
+
+    public Set<Particle> getNeighbours() {
+        return neighbours;
+    }
+
+    public Integer getId() {
+        return id;
+    }
 }
