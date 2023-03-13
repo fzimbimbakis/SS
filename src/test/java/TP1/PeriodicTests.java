@@ -1,13 +1,13 @@
 package TP1;
 
 import TP1.models.Particle;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.*;
 
-class PeriodicTests {
+public class PeriodicTests {
 //             ___ ___ ___
 //            | G | H | I |
 //            |___|___|___|
@@ -36,8 +36,8 @@ class PeriodicTests {
     static final List<Integer> yesIds = new ArrayList<>();
     static final List<Integer> noIds = new ArrayList<>();
 
-    @BeforeEach
-    void before() {
+    @Before
+    public void before() {
         yesIds.removeIf(id -> true);
         noIds.removeIf(id -> true);
         particles.removeIf(p -> true);
@@ -115,21 +115,21 @@ class PeriodicTests {
         return map_A;
     }
 
-    void assertNeighbours(Map<Integer, Particle> map) {
+    private void assertNeighbours(Map<Integer, Particle> map) {
 
         Integer[] a1 = new Integer[]{2, 11, 12, 14, 15, 17};
         Integer[] a2 = new Integer[]{1, 10, 12, 13, 15, 16};
 
         // Assertions 1
-        Assertions.assertEquals(a1.length, map.get(1).getNeighbours().size());
-        Assertions.assertTrue(map.get(1).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a1).anyMatch(b -> a == b)));
+        Assert.assertEquals(a1.length, map.get(1).getNeighbours().size());
+        Assert.assertTrue(map.get(1).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a1).anyMatch(b -> a == b)));
         // Assertions 2
-        Assertions.assertEquals(a2.length, map.get(2).getNeighbours().size());
-        Assertions.assertTrue(map.get(2).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a2).anyMatch(b -> a == b)));
+        Assert.assertEquals(a2.length, map.get(2).getNeighbours().size());
+        Assert.assertTrue(map.get(2).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a2).anyMatch(b -> a == b)));
     }
 
     @Test
-    void checkA() {
+    public void checkA() {
         // Particles
         Map<Integer, Particle> map = createParticles(A, B, C, D, E, F, G, H, I);
 
@@ -141,7 +141,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkB() {
+    public void checkB() {
         // Particles
         Map<Integer, Particle> map = createParticles(B, C, A, E, F, D, H, I, G);
 
@@ -153,7 +153,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkC() {
+    public void checkC() {
         // Particles
         Map<Integer, Particle> map = createParticles(C, A, B, F, D, E, I, G, H);
 
@@ -165,7 +165,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkD() {
+    public void checkD() {
         // Particles
         Map<Integer, Particle> map = createParticles(D, E, F, G, H, I, A, B, C);
 
@@ -177,7 +177,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkE() {
+    public void checkE() {
         // Particles
         Map<Integer, Particle> map = createParticles(E, F, D, H, I, G, B, C, A);
 
@@ -189,7 +189,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkF() {
+    public void checkF() {
         // Particles
         Map<Integer, Particle> map = createParticles(F, D, E, I, G, H, C, A, B);
 
@@ -201,7 +201,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkG() {
+    public void checkG() {
         // Particles
         Map<Integer, Particle> map = createParticles(G, H, I, A, B, C, D, E, F);
 
@@ -213,7 +213,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkH() {
+    public void checkH() {
         // Particles
         Map<Integer, Particle> map = createParticles(H, I, G, B, C, A, E, F, D);
 
@@ -225,7 +225,7 @@ class PeriodicTests {
     }
 
     @Test
-    void checkI() {
+    public void checkI() {
         // Particles
         Map<Integer, Particle> map = createParticles(I, G, H, C, A, B, F, D, E);
 

@@ -1,13 +1,13 @@
 package TP1;
 
 import TP1.models.Particle;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.*;
 
-class NonPeriodicTests {
+public class NonPeriodicTests {
 //             ___ ___ ___
 //            | G | H | I |
 //            |___|___|___|
@@ -34,8 +34,8 @@ class NonPeriodicTests {
     static final Set<Particle> particles = new HashSet<>();
     static final Map<Integer, Particle> map_A = new HashMap<>();
 
-    @BeforeEach
-    void before() {
+    @Before
+    public void before() {
         particles.removeIf(p -> true);
     }
 
@@ -111,17 +111,17 @@ class NonPeriodicTests {
         return map_A;
     }
 
-    void assertNeighbours(Map<Integer, Particle> map, Integer[] a1, Integer[] a2) {
-        // Assertions 1
-        Assertions.assertEquals(a1.length, map.get(1).getNeighbours().size());
-        Assertions.assertTrue(map.get(1).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a1).anyMatch(b -> a == b)));
-        // Assertions 2
-        Assertions.assertEquals(a2.length, map.get(2).getNeighbours().size());
-        Assertions.assertTrue(map.get(2).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a2).anyMatch(b -> a == b)));
+    private void assertNeighbours(Map<Integer, Particle> map, Integer[] a1, Integer[] a2) {
+        // Assert 1
+        Assert.assertEquals(a1.length, map.get(1).getNeighbours().size());
+        Assert.assertTrue(map.get(1).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a1).anyMatch(b -> a == b)));
+        // Assert 2
+        Assert.assertEquals(a2.length, map.get(2).getNeighbours().size());
+        Assert.assertTrue(map.get(2).getNeighbours().stream().mapToInt(Particle::getId).allMatch(a -> Arrays.stream(a2).anyMatch(b -> a == b)));
     }
 
     @Test
-    void checkA() {
+    public void checkA() {
         // Particles
         Map<Integer, Particle> map = createParticles(A, B, C, D, E, F, G, H, I);
 
@@ -133,7 +133,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkB() {
+    public void checkB() {
         // Particles
         Map<Integer, Particle> map = createParticles(B, C, A, E, F, D, H, I, G);
 
@@ -145,7 +145,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkC() {
+    public void checkC() {
         // Particles
         Map<Integer, Particle> map = createParticles(C, A, B, F, D, E, I, G, H);
 
@@ -157,7 +157,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkD() {
+    public void checkD() {
         // Particles
         Map<Integer, Particle> map = createParticles(D, E, F, G, H, I, A, B, C);
 
@@ -169,7 +169,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkE() {
+    public void checkE() {
         // Particles
         Map<Integer, Particle> map = createParticles(E, F, D, H, I, G, B, C, A);
 
@@ -181,19 +181,19 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkF() {
+    public void checkF() {
         // Particles
         Map<Integer, Particle> map = createParticles(F, D, E, I, G, H, C, A, B);
 
         // Method
         new CellIndexMethod(L, 18, INTERACTION_RADIUS, M, particles);
 
-        // Assertions
+        // Assert
         assertNeighbours(map, new Integer[]{2, 11, 12, 14, 15, 17}, new Integer[]{1, 12, 15});
     }
 
     @Test
-    void checkG() {
+    public void checkG() {
         // Particles
         Map<Integer, Particle> map = createParticles(G, H, I, A, B, C, D, E, F);
 
@@ -205,7 +205,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkH() {
+    public void checkH() {
         // Particles
         Map<Integer, Particle> map = createParticles(H, I, G, B, C, A, E, F, D);
 
@@ -217,7 +217,7 @@ class NonPeriodicTests {
     }
 
     @Test
-    void checkI() {
+    public void checkI() {
         // Particles
         Map<Integer, Particle> map = createParticles(I, G, H, C, A, B, F, D, E);
 
