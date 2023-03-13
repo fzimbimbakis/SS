@@ -53,9 +53,11 @@ if __name__ == '__main__':
 
     x, y = read_times_file(times_file)
     plt.title('M optimo')
-    plt.ylabel('Tiempo (ms)')
+    plt.ylabel('Tiempo (ns)')
     plt.xlabel('M (numero de celdas) ')
     plt.scatter(x, y)
     plt.plot(x, y)
     plt.savefig("resources/TP1/times.png")
+
+    plt.clf()
 

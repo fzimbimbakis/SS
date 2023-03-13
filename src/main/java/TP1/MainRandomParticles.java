@@ -115,13 +115,15 @@ public class MainRandomParticles {
         CellIndexMethod cellIndexMethod;
         long startTime;
         cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, M, particles);
+        cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
+        cellIndexMethod.clearNeighbours();
         try {
             FileWriter myWriter = new FileWriter("resources/TP1/optimusM.txt");
-            for (int i = M; i > 0 ; i--) {
-                startTime = System.currentTimeMillis();
+            for (int i = 1; i <= M ; i++) {
+                startTime = System.nanoTime();
                 cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, i, particles);
-                myWriter.write(i + " " + (System.currentTimeMillis() - startTime) + "\n");
-                cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
+                myWriter.write(i + " " + (System.nanoTime() - startTime) + "\n");
+//                cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
                 cellIndexMethod.clearNeighbours();
             }
 
