@@ -4,8 +4,8 @@ from matplotlib import pyplot as plt
 particle = 94
 neighbours = [52, 10, 58, 91]
 #nombre del archivo donde se encuentran las coordenadas de todas las particulas
-dynamic_file ="resources/TP1/Dynamic.txt"
-times_file = "resources/TP1/optimusM.txt"
+dynamic_file ="../resources/Dynamic.txt"
+times_file = "../resources/optimusM.txt"
 
 def read_particles_file(name):
     x_list = []
@@ -47,7 +47,7 @@ if __name__ == '__main__':
             plt.plot(x[i], y[i], 'co')
         #plt.annotate(str(i), (x[i], y[i]))
     plt.title('Representacion de las particulas')
-    plt.savefig("resources/TP1/particles.png")
+    plt.savefig("../resources/particles.png")
     plt.clf()
 
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     plt.xlabel('M (numero de celdas) ')
     plt.scatter(x, y)
     plt.plot(x, y)
-    plt.savefig("resources/TP1/times.png")
+    plt.savefig("../resources/times.png")
 
     plt.clf()
 

@@ -1,6 +1,4 @@
-package TP1;
-
-import TP1.models.Particle;
+import models.Particle;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

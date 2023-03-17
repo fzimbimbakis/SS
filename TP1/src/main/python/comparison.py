@@ -14,5 +14,5 @@ if __name__ == '__main__':
     plt.ylabel('Tiempo (ms)')
 
     # Display the graph
-    plt.savefig('resources/TP1/comparison.png')
+    plt.savefig('../resources/comparison.png')
     plt.clf()

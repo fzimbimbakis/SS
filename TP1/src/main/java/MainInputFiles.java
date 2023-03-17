@@ -1,6 +1,4 @@
-package TP1;
-
-import TP1.models.Particle;
+import models.Particle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -11,7 +9,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MainComparisonBasicMethod {
+public class MainInputFiles {
 
     static final int PARTICLE_RADIUS_INDEX = 0;
     static final int PARTICLE_X_INDEX = 0;
@@ -19,13 +17,13 @@ public class MainComparisonBasicMethod {
 
     public static void main(String[] args) {
 
-        Double interactionRadius = null;
+        double interactionRadius = 0.0;
         int M = 0;
         String staticFilePath = null;
         String dynamicFilePath = null;
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("src/main/java/TP1/config.json"))
+        try (FileReader reader = new FileReader("./TP1/src/main/java/config.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -96,23 +94,7 @@ public class MainComparisonBasicMethod {
             lectorS.close();
             lectorD.close();
 
-            final Double iR = interactionRadius;
-            long startTime = System.currentTimeMillis();
-            particles.forEach(p1 -> {
-                particles.forEach(p2 -> {
-                    if(!p1.getId().equals(p2.getId()) && p1.isNeighbour(p2, iR)){
-                        p1.addNeighbour(p2);
-                    }
-                });
-            });
-            System.out.println("Fuerza bruta: " + (System.currentTimeMillis() - startTime));
-            particles.forEach(particle -> System.out.print(particle.neighboursToString()));
-
-            particles.forEach(Particle::clearNeighbours);
-
-            startTime = System.currentTimeMillis();
             CellIndexMethod cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, M, particles);
-            System.out.println("Cell index method: " + (System.currentTimeMillis() - startTime));
             cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
 
             CellIndexMethodPeriodic cellIndexMethodPeriodic = new CellIndexMethodPeriodic(L, N, interactionRadius, M, particles);

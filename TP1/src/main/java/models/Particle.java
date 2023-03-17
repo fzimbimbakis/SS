@@ -1,4 +1,4 @@
-package TP1.models;
+package models;
 
 import java.util.HashSet;
 import java.util.Objects;

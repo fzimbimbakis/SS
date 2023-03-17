@@ -1,7 +1,5 @@
-package TP1;
-
-import TP1.models.Cell;
-import TP1.models.Particle;
+import models.Cell;
+import models.Particle;
 
 import java.util.HashMap;
 import java.util.Map;

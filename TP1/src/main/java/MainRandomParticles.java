@@ -1,6 +1,4 @@
-package TP1;
-
-import TP1.models.Particle;
+import models.Particle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,7 +21,7 @@ public class MainRandomParticles {
 
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("src/main/java/TP1/config.json"))
+        try (FileReader reader = new FileReader("./TP1/src/main/java/config.json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -41,7 +39,7 @@ public class MainRandomParticles {
         }
 
         try {
-            File myObj = new File("resources/TP1/Dynamic.txt");
+            File myObj = new File("./TP1/src/main/resources/Dynamic.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -54,7 +52,7 @@ public class MainRandomParticles {
 
         Set<Particle> particles = new HashSet<>();
         try {
-            FileWriter myWriter = new FileWriter("resources/TP1/Dynamic.txt");
+            FileWriter myWriter = new FileWriter("./TP1/src/main/resources/Dynamic.txt");
             myWriter.write("0\n");
             double x, y;
             for (int i = 0; i < N; i++) {
@@ -72,7 +70,7 @@ public class MainRandomParticles {
         }
 
         try {
-            File myObj = new File("resources/TP1/Static.txt");
+            File myObj = new File("./TP1/src/main/resources/Static.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -84,7 +82,7 @@ public class MainRandomParticles {
         }
 
         try {
-            FileWriter myWriter = new FileWriter("resources/TP1/Static.txt");
+            FileWriter myWriter = new FileWriter("./TP1/src/main/resources/Static.txt");
             myWriter.write(N + "\n");
             myWriter.write(L + "\n");
             for (int i = 0; i < N; i++) {
@@ -99,7 +97,7 @@ public class MainRandomParticles {
         }
 
         try {
-            File myObj = new File("resources/TP1/optimusM.txt");
+            File myObj = new File("./TP1/src/main/resources/optimusM.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -118,7 +116,7 @@ public class MainRandomParticles {
         cellIndexMethod.getParticles().forEach(particle -> System.out.print(particle.neighboursToString()));
         cellIndexMethod.clearNeighbours();
         try {
-            FileWriter myWriter = new FileWriter("resources/TP1/optimusM.txt");
+            FileWriter myWriter = new FileWriter("./TP1/src/main/resources/optimusM.txt");
             for (int i = 1; i <= M ; i++) {
                 startTime = System.nanoTime();
                 cellIndexMethod = new CellIndexMethod(L, N, interactionRadius, i, particles);

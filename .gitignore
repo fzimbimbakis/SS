@@ -2,11 +2,12 @@
 ..DS_Store/
 .vs/
 
-resources/TP1/times.png
-resources/TP1/particles.png
-resources/TP1/Dynamic.txt
-resources/TP1/optimusM.txt
-resources/TP1/Static.txt
+TP1/src/main/resources/times.png
+TP1/src/main/resources/particles.png
+TP1/src/main/resources/Dynamic.txt
+TP1/src/main/resources/optimusM.txt
+TP1/src/main/resources/Static.txt
+TP1/src/main/resources/comparison.png
 
 # These are some examples of commonly ignored file patterns.
 # You should customize this list as applicable to your project.
