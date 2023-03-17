@@ -120,6 +120,10 @@ public class Particle {
         return id;
     }
 
+    // si queremos que reboten en el borde
+    // si es mayor a L -> le restamos a L el resto de x/L
+    // si es menor a 0 usamos el valor absoluto
+
     public void moveParticle(Double L){
         this.x = (this.x + this.speed * Math.cos(this.angle)) % L;
         if (x < 0)

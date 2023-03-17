@@ -18,6 +18,7 @@ public class BasicMain {
         Double interactionRadius = null;
         Integer M = null;
         Double n = null;
+        Integer times = null;
         Double speed = null;
         String staticFilePath = null;
         String dynamicFilePath = null;
@@ -33,6 +34,7 @@ public class BasicMain {
 
             L = Double.parseDouble(jsonObject.get("L").toString());
             N = Integer.parseInt(jsonObject.get("N").toString());
+            times = Integer.parseInt(jsonObject.get("times").toString());
             n = Double.parseDouble(jsonObject.get("n").toString());
             speed = Double.parseDouble(jsonObject.get("speed").toString());
             particleRadius = Double.parseDouble(jsonObject.get("particleRadius").toString());
@@ -54,7 +56,7 @@ public class BasicMain {
 
         final Double noise = n;
         final Double length = L;
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < times; i++) {
             cellIndexMethod.run();
             particles.forEach( p -> {
                 p.moveParticle(length);
