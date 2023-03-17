@@ -10,62 +10,54 @@ import java.util.Set;
 
 public class ParticlesUtils {
 
-        public static Set<Particle> generateRandomParticleFiles(String dynamicPath, String staticPath, Integer N, Double L, Double particleRadius, Double speed){
+        private static File createFile(String path) {
+                try {
+                        File file = new File(path);
+                        if (file.createNewFile()) {
+                                System.out.println("File created: " + file.getName());
+                        } else {
+                                throw new IllegalStateException("File already exists: " + path);
+                        }
+                        return file;
+                } catch (IOException e) {
+                        throw new RuntimeException("Error writing random particles to file (" + path + ") in ParticleUtils.createFile.");
+                }
+        }
+
+        private static Set<Particle> generateParticles(Integer N, Double L, Double particleRadius, Double speed) {
                 Set<Particle> particles = new HashSet<>();
-
-                ///  Write dynamic file
-                ///  time
-                ///  x y Vx Vy for each particle
-
-                try {
-                        File myObj = new File(dynamicPath);
-                        if (myObj.createNewFile()) {
-                                System.out.println("File created: " + myObj.getName());
-                        } else {
-                                System.out.println("File already exists.");
-                        }
-                } catch (IOException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
+                double x, y, angle;
+                for (int i = 0; i < N; i++) {
+                        // Generate
+                        x = Math.random() * L;
+                        y = Math.random() * L;
+                        angle = Math.random() * 2 * Math.PI;
+                        particles.add(new Particle(i, x, y, particleRadius, angle, speed));
                 }
+                return particles;
+        }
 
-                try {
-                        FileWriter myWriter = new FileWriter(dynamicPath);
-                        myWriter.write("0\n");
-                        double x, y, angle;
-                        for (int i = 0; i < N; i++) {
-                                // Generate
-                                x = Math.random() * L;
-                                y = Math.random() * L;
-                                angle = Math.random() * 2 * Math.PI;
-                                particles.add(new Particle(i, x, y, particleRadius, angle, speed));
-                                // Write x y Vx Vy
-                                myWriter.write(x + " " + y + " " + Math.cos(angle)*speed + " " + Math.sin(angle*speed) + "\n");
-                        }
-
-                        myWriter.close();
-                        System.out.println("Successfully wrote to the file.");
-                } catch (IOException e) {
-                        throw new RuntimeException("Error writing random particles to file (" + dynamicPath + ") in RandomParticlesGenerator.generate.");
-                }
+        public static Set<Particle> generateRandomParticleFiles(String dynamicPath, String staticPath, Integer N, Double L, Double particleRadius, Double speed) {
 
 
-                /// Write static file
-                /// N
-                /// L
-                /// particleRadius for each particle
+                //**    Write dynamic file      **********************************************
+                //**              time
+                //**              x y Vx Vy (for each particle)
 
-                try {
-                        File myObj = new File(staticPath);
-                        if (myObj.createNewFile()) {
-                                System.out.println("File created: " + myObj.getName());
-                        } else {
-                                System.out.println("File already exists.");
-                        }
-                } catch (IOException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
-                }
+                createFile(dynamicPath);
+
+                Set<Particle> particles = generateParticles(N, L, particleRadius, speed);
+
+                writeParticlesToFile(dynamicPath, 0, particles);
+
+                //****************************************************************************
+
+                //**    Write static file      **********************************************
+                //**               N
+                //**               L
+                //**               particleRadius for each particle
+
+                createFile(staticPath);
 
                 try {
                         FileWriter myWriter = new FileWriter(staticPath);
@@ -81,6 +73,8 @@ public class ParticlesUtils {
                         System.out.println("An error occurred.");
                         e.printStackTrace();
                 }
+
+                //****************************************************************************
 
                 return particles;
         }
