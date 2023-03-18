@@ -26,11 +26,12 @@ def read_particles_file(name):
 if __name__ == '__main__':
     particles_x, particles_y = read_particles_file(dynamic_file)
     fig, ax = plt.subplots()
-    ax.set_xlim(20)
-    ax.set_ylim(20)
     ax.set_box_aspect(1)
     for i in range(times):
         plt.cla()
+        ax.set_xlim([0, 20])
+        ax.set_ylim([0, 20])
+        ax.grid(which='both', color='gray', linestyle='--')
         ax.scatter(particles_x[i], particles_y[i])
         plt.title('Representacion de las particulas en t=' + str(i))
         plt.pause(0.02)

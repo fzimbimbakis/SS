@@ -35,6 +35,7 @@ public class BasicMain {
         final Double noise = config.getNoise();
         final Double length = config.getL();
 
+        System.out.print("Starting");
         for (int i = 1; i < config.getTimes(); i++) {
             cellIndexMethod.run();
             particles.forEach(p -> {
@@ -43,7 +44,9 @@ public class BasicMain {
             });
             ParticlesUtils.writeParticlesToFile(config.getDynamicFilePath(), i, particles);
             cellIndexMethod.clearNeighbours();
+            System.out.print(".");
         }
+        System.out.println("Finished");
 
     }
 }

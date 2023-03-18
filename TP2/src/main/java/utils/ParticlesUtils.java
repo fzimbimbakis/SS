@@ -86,7 +86,6 @@ public class ParticlesUtils {
                         for (Particle particle: particles)
                                 myWriter.write(particle.toString());
                         myWriter.close();
-                        System.out.println("Successfully wrote to the file.");
                 } catch (IOException e) {
                         throw new RuntimeException("Error writing particles to file (" + filePath + ") in ParticlesUtils.writeParticlesToFile.");
                 }
