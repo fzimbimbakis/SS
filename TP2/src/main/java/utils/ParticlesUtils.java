@@ -31,7 +31,7 @@ public class ParticlesUtils {
                         // Generate
                         x = Math.random() * L;
                         y = Math.random() * L;
-                        angle = (Math.random() * 4 -  2) * Math.PI;
+                        angle = (Math.random() * 2 -  1) * Math.PI;
                         particles.add(new Particle(i, x, y, particleRadius, angle, speed));
                 }
                 return particles;
@@ -84,19 +84,23 @@ public class ParticlesUtils {
                         FileWriter myWriter = new FileWriter(filePath, true);
                         myWriter.write(time + "\n");
                         for (Particle particle: particles)
-                                myWriter.write(particle.toString());
+                                myWriter.write(particle.toString() + "\n");
                         myWriter.close();
                 } catch (IOException e) {
                         throw new RuntimeException("Error writing particles to file (" + filePath + ") in ParticlesUtils.writeParticlesToFile.");
                 }
         }
 
+
+
         public static void writeParticlesToFileXyz(String filePath, Integer time, Set<Particle> particles, Integer N){
                 try {
                         FileWriter myWriter = new FileWriter(filePath, true);
-                        myWriter.write(N + "\n" + time + "\n");
+                        myWriter.write((N + 2) + "\n" + time + "\n");
+                        myWriter.write("0 0 0 0 0" + "\n");
+                        myWriter.write("20 20 0 0 0" + "\n");
                         for (Particle particle: particles)
-                                myWriter.write(particle.toString());
+                                myWriter.write(particle.toString() + " " + particle.normalizeAngle(255) + "\n");
                         myWriter.close();
                 } catch (IOException e) {
                         throw new RuntimeException("Error writing particles to file (" + filePath + ") in ParticlesUtils.writeParticlesToFile.");
