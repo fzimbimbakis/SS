@@ -1,5 +1,6 @@
 import models.Particle;
 import utils.CellIndexMethod;
+import utils.CellIndexMethodPeriodic;
 import utils.JsonConfigReader;
 import utils.ParticlesUtils;
 
@@ -24,7 +25,7 @@ public class BasicMain {
         );
 
 
-        CellIndexMethod cellIndexMethod = new CellIndexMethod(
+        CellIndexMethod cellIndexMethod = new CellIndexMethodPeriodic(
                 config.getL(),
                 config.getN(),
                 config.getInteractionRadius(),
@@ -38,11 +39,12 @@ public class BasicMain {
         System.out.print("Starting");
         for (int i = 1; i < config.getTimes(); i++) {
             cellIndexMethod.run();
+            ParticlesUtils.writeParticlesToFile(config.getDynamicFilePath(), i, particles);
+            ParticlesUtils.writeParticlesToFileXyz(config.getDynamicFilePathXyz(), i, particles, config.getN());
             particles.forEach(p -> {
                 p.moveParticle(length);
                 p.updateAngle(noise);
             });
-            ParticlesUtils.writeParticlesToFile(config.getDynamicFilePath(), i, particles);
             cellIndexMethod.clearNeighbours();
             System.out.print(".");
         }

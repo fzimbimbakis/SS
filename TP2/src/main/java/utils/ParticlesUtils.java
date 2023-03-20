@@ -16,7 +16,7 @@ public class ParticlesUtils {
                         if (file.createNewFile()) {
                                 System.out.println("File created: " + file.getName());
                         } else {
-                                System.out.println("File already " + file.getName() + " exists");
+                                throw new IllegalStateException("Eliminar archivo " + path + " y correr devuelta.");
                         }
                         return file;
                 } catch (IOException e) {
@@ -31,7 +31,7 @@ public class ParticlesUtils {
                         // Generate
                         x = Math.random() * L;
                         y = Math.random() * L;
-                        angle = Math.random() * 2 * Math.PI;
+                        angle = (Math.random() * 4 -  2) * Math.PI;
                         particles.add(new Particle(i, x, y, particleRadius, angle, speed));
                 }
                 return particles;
@@ -83,6 +83,18 @@ public class ParticlesUtils {
                 try {
                         FileWriter myWriter = new FileWriter(filePath, true);
                         myWriter.write(time + "\n");
+                        for (Particle particle: particles)
+                                myWriter.write(particle.toString());
+                        myWriter.close();
+                } catch (IOException e) {
+                        throw new RuntimeException("Error writing particles to file (" + filePath + ") in ParticlesUtils.writeParticlesToFile.");
+                }
+        }
+
+        public static void writeParticlesToFileXyz(String filePath, Integer time, Set<Particle> particles, Integer N){
+                try {
+                        FileWriter myWriter = new FileWriter(filePath, true);
+                        myWriter.write(N + "\n" + time + "\n");
                         for (Particle particle: particles)
                                 myWriter.write(particle.toString());
                         myWriter.close();

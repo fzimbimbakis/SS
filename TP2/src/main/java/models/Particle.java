@@ -136,8 +136,8 @@ public class Particle {
     public void updateAngle(Double n){
         double senSum = Math.sin(angle) + neighbours.stream().mapToDouble(p -> Math.sin(p.angle)).sum();
         double cosSum = Math.cos(angle) + neighbours.stream().mapToDouble(p -> Math.cos(p.angle)).sum();
-        double senAverage = senSum / neighbours.size() + 1;
-        double cosAverage = cosSum / neighbours.size() + 1;
+        double senAverage = senSum / (neighbours.size() + 1);
+        double cosAverage = cosSum / (neighbours.size() + 1);
 
         angle = Math.atan2(senAverage, cosAverage) + Math.random() * n - (n/2);
     }

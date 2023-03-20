@@ -19,6 +19,7 @@ public class JsonConfigReader {
     private final Double speed;
     private final String staticFilePath;
     private final String dynamicFilePath;
+    private final String dynamicFilePathXyz;
 
     public JsonConfigReader(String jsonConfigFilePath) {
         JSONParser jsonParser = new JSONParser();
@@ -37,6 +38,7 @@ public class JsonConfigReader {
             interactionRadius = Double.parseDouble(jsonObject.get("interactionRadius").toString());
             staticFilePath = jsonObject.get("staticFile").toString();
             dynamicFilePath = jsonObject.get("dynamicFile").toString();
+            dynamicFilePathXyz = jsonObject.get("dynamicFileXyz").toString();
             M = (int) (L / (interactionRadius + particleRadius * 2));
         } catch (IOException | ParseException e) {
             throw new RuntimeException("Error reading parameters from config.json");
@@ -81,5 +83,9 @@ public class JsonConfigReader {
 
     public String getDynamicFilePath() {
         return dynamicFilePath;
+    }
+
+    public String getDynamicFilePathXyz() {
+        return dynamicFilePathXyz;
     }
 }
