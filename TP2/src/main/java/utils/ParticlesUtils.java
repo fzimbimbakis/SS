@@ -16,7 +16,7 @@ public class ParticlesUtils {
                         if (file.createNewFile()) {
                                 System.out.println("File created: " + file.getName());
                         } else {
-                                throw new IllegalStateException("File already exists: " + path);
+                                System.out.println("File already " + file.getName() + " exists");
                         }
                         return file;
                 } catch (IOException e) {
