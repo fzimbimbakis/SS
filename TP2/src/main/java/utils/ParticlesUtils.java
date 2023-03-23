@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class ParticlesUtils {
 
-        private static File createFile(String path) {
+        public static File createFile(String path) {
                 try {
                         File file = new File(path);
                         if (file.createNewFile()) {
@@ -78,6 +78,17 @@ public class ParticlesUtils {
 
                 return particles;
         }
+        public static void writeVaToFile(String filePath, Integer time,  Set<Particle> particles, Integer N , Double speed) {
+                Double Va = calculateVa(particles, N , speed);
+                try {
+                        FileWriter myWriter = new FileWriter(filePath, true);
+                        myWriter.write(time + " " + Va + "\n");
+                        myWriter.close();
+                } catch (IOException e) {
+                        throw new RuntimeException("Error writing Va to file (" + filePath + ") in ParticlesUtils.writeVaToFile.");
+                }
+        }
+
 
         public static void writeParticlesToFile(String filePath, Integer time, Set<Particle> particles){
                 try {
@@ -101,6 +112,16 @@ public class ParticlesUtils {
                 } catch (IOException e) {
                         throw new RuntimeException("Error writing particles to file (" + filePath + ") in ParticlesUtils.writeParticlesToFile.");
                 }
+        }
+
+        private static Double calculateVa(Set<Particle> particles, Integer N , Double speed){
+                Double sumVx = particles.stream().mapToDouble(Particle::getVx).sum();
+                Double sumVy = particles.stream().mapToDouble(Particle::getVy).sum();
+                Double moduleV = Math.sqrt(Math.pow(sumVx,2) + Math.pow(sumVy,2));
+
+                return moduleV/(N*speed);
+
+
         }
 
 }

@@ -140,3 +140,6 @@ fabric.properties
 
 /TP2/src/main/resources/dynamic.txt
 /TP2/src/main/resources/static.txt
+/TP2/src/main/resources/graphs/
+/TP2/src/main/resources/noiseAnalysis/
+/TP2/src/main/resources/dynamic.xyz

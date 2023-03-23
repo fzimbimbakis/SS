@@ -33,6 +33,10 @@ public class Particle {
         this.angle = angle;
     }
 
+    public static Particle copyOf(Particle particle) {
+        return new Particle(particle.id, particle.x, particle.y, particle.radius, particle.angle, particle.speed);
+    }
+
 
 
     @Override
@@ -140,5 +144,13 @@ public class Particle {
         double cosAverage = cosSum / (neighbours.size() + 1);
 
         angle = Math.atan2(senAverage, cosAverage) + Math.random() * n - (n/2);
+    }
+
+    public Double getVx(){
+        return this.speed * Math.cos(this.angle);
+    }
+
+    public Double getVy(){
+        return this.speed * Math.sin(this.angle);
     }
 }
