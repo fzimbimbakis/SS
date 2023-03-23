@@ -7,10 +7,10 @@ import java.util.Set;
 public class Particle {
 
     private final Integer id;
-    protected Double x;
-    protected Double y;
+    private Double x;
+    private Double y;
     private Double radius;
-    protected final Set<Particle> neighbours;
+    private final Set<Particle> neighbours;
     //// Movement
     private Double angle;
     private Double speed;

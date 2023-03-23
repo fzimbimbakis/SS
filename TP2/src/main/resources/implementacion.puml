@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Cell{
+- Set<Particle> particles
+}
+
+enum NEIGHBOURS_POSITION
+
+class Particle{
+- Integer id
+- Double x
+- Double y
+- Double radius
+- Set<Particle> neighbours
+- Double angle
+- Double speed
+
+}
+
+class CellIndexMethod{
+- Double L
+- Integer N
+- Double interactionRadius
+# Integer M
+- Set<Particle> particles
+# Cell[][] cells
+}
+
+class CellIndexMethodPeriodic
+
+CellIndexMethod <|-- CellIndexMethodPeriodic
+CellIndexMethod *-- Particle
+CellIndexMethod *-- Cell
+Cell *-- Particle
+Cell *-- NEIGHBOURS_POSITION
+
+
+@enduml
