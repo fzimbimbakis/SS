@@ -106,7 +106,7 @@ public class Particle {
 
     @Override
     public String toString() {
-        return x + " " + y + " " + Math.cos(angle)*speed + " " + Math.sin(angle*speed) + "\n";
+        return x + " " + y + " " + Math.cos(angle)*speed + " " + Math.sin(angle)*speed;
     }
 
 
@@ -144,6 +144,10 @@ public class Particle {
         double cosAverage = cosSum / (neighbours.size() + 1);
 
         angle = Math.atan2(senAverage, cosAverage) + Math.random() * n - (n/2);
+    }
+
+    public Integer normalizeAngle(int module) {
+        return (int)(((angle + Math.PI)/ (2 * Math.PI)) * module);
     }
 
     public Double getVx(){
