@@ -4,8 +4,8 @@ import utils.CellIndexMethodPeriodic;
 import utils.JsonConfigReader;
 import utils.ParticlesUtils;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +14,7 @@ public class StatisticsMain {
     private static final String VA_BASE_PATH = "./TP2/src/main/resources/noiseAnalysis/vaVsNoise=";
     private static final String ANIMATION_BASE_PATH = "./TP2/src/main/resources/noiseAnalysis/animation(noise=";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         JsonConfigReader config = new JsonConfigReader(JSON_CONFIG_PATH);
 
@@ -64,17 +64,21 @@ public class StatisticsMain {
             ParticlesUtils.createFile(animationFilePath);
             ParticlesUtils.writeParticlesToFileXyz(animationFilePath, 0, particles, config.getN(), config.getL());
             //System.out.print("Starting");
+            FileWriter myWriter = new FileWriter(vaFilePath, true);
             for (int i = 1; i < config.getTimes(); i++) {
                 cellIndexMethod.run();
-                ParticlesUtils.writeVaToFile(vaFilePath, i, particles, config.getN(), config.getSpeed());
-                ParticlesUtils.writeParticlesToFileXyz(animationFilePath, i, particles, config.getN(), config.getL());
+                ParticlesUtils.writeVaToFile(myWriter, i, particles, config.getN(), config.getSpeed());
+//                ParticlesUtils.writeParticlesToFileXyz(animationFilePath, i, particles, config.getN(), config.getL());
                 particles.forEach(p -> {
                     p.moveParticle(length);
                     p.updateAngle(noise);
                 });
                 cellIndexMethod.clearNeighbours();
                 //System.out.print(".");
+                if(i % 100 == 0)
+                    System.out.println(i);
             }
+            myWriter.close();
             System.out.println("Finished with noise= " + j);
         }
 

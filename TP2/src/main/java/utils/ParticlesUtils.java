@@ -93,6 +93,15 @@ public class ParticlesUtils {
                 }
         }
 
+        public static void writeVaToFile(FileWriter myWriter, Integer time,  Set<Particle> particles, Integer N , Double speed) {
+                Double Va = calculateVa(particles, N , speed);
+                try {
+                        myWriter.write(time + " " + Va + "\n");
+                } catch (IOException e) {
+                        throw new RuntimeException("Error writing Va to file in ParticlesUtils.writeVaToFile.");
+                }
+        }
+
 
         public static void writeParticlesToFile(String filePath, Integer time, Set<Particle> particles){
                 try {
@@ -123,9 +132,9 @@ public class ParticlesUtils {
         }
 
         private static Double calculateVa(Set<Particle> particles, Integer N , Double speed){
-                Double sumVx = particles.stream().mapToDouble(Particle::getVx).sum();
-                Double sumVy = particles.stream().mapToDouble(Particle::getVy).sum();
-                Double moduleV = Math.sqrt(Math.pow(sumVx,2) + Math.pow(sumVy,2));
+                double sumVx = particles.stream().mapToDouble(Particle::getVx).sum();
+                double sumVy = particles.stream().mapToDouble(Particle::getVy).sum();
+                double moduleV = Math.sqrt(Math.pow(sumVx,2) + Math.pow(sumVy,2));
 
                 return moduleV/(N*speed);
 
