@@ -104,12 +104,12 @@ public class ParticlesUtils {
 
 
 
-        public static void writeParticlesToFileXyz(String filePath, Integer time, Set<Particle> particles, Integer N){
+        public static void writeParticlesToFileXyz(String filePath, Integer time, Set<Particle> particles, Integer N, Double L){
                 try {
                         FileWriter myWriter = new FileWriter(filePath, true);
                         myWriter.write((N + 2) + "\n" + time + "\n");
                         myWriter.write("0 0 0 0 0" + "\n");
-                        myWriter.write("20 20 0 0 0" + "\n");
+                        myWriter.write(L + " " + L +" 0 0 0" + "\n");
                         for (Particle particle: particles)
                                 myWriter.write(particle.toString() + " " + particle.normalizeAngle(255) + "\n");
                         myWriter.close();

@@ -40,7 +40,7 @@ public class BasicMain {
         for (int i = 1; i < config.getTimes(); i++) {
             cellIndexMethod.run();
             ParticlesUtils.writeParticlesToFile(config.getDynamicFilePath(), i, particles);
-            ParticlesUtils.writeParticlesToFileXyz(config.getDynamicFilePathXyz(), i, particles, config.getN());
+            ParticlesUtils.writeParticlesToFileXyz(config.getDynamicFilePathXyz(), i, particles, config.getN(), config.getL());
             particles.forEach(p -> {
                 p.moveParticle(length);
                 p.updateAngle(noise);
