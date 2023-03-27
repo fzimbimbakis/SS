@@ -13,6 +13,8 @@ public class Particle {
     private final Set<Particle> neighbours;
     //// Movement
     private Double angle;
+    private Double angleCos;
+    private Double angleSin;
     private Double speed;
 
     public Particle(Integer id, Double x, Double y, Double radius) {
@@ -31,6 +33,8 @@ public class Particle {
         this.neighbours = new HashSet<>();
         this.speed = speed;
         this.angle = angle;
+        this.angleCos = Math.cos(angle);
+        this.angleSin = Math.sin(angle);
     }
 
     public static Particle copyOf(Particle particle) {
@@ -106,13 +110,13 @@ public class Particle {
 
     @Override
     public String toString() {
-        return x + " " + y + " " + Math.cos(angle)*speed + " " + Math.sin(angle)*speed;
+        return x + " " + y + " " + angleCos*speed + " " + angleSin*speed;
     }
 
 
     public String neighboursToString() {
         StringBuilder builder = new StringBuilder(toString());
-        neighbours.forEach(particle -> builder.append(", ").append(String.valueOf(id)));
+        neighbours.forEach(particle -> builder.append(", ").append(id));
         return builder.append("\n").toString();
     }
 
@@ -129,21 +133,23 @@ public class Particle {
     // si es menor a 0 usamos el valor absoluto
 
     public void moveParticle(Double L){
-        this.x = (this.x + this.speed * Math.cos(this.angle)) % L;
+        this.x = (this.x + this.speed * angleCos) % L;
         if (x < 0)
             x += L;
-        this.y = (this.y + this.speed * Math.sin(this.angle)) % L;
+        this.y = (this.y + this.speed * angleSin) % L;
         if (y < 0)
             y += L;
     }
 
     public void updateAngle(Double n){
-        double senSum = Math.sin(angle) + neighbours.stream().mapToDouble(p -> Math.sin(p.angle)).sum();
-        double cosSum = Math.cos(angle) + neighbours.stream().mapToDouble(p -> Math.cos(p.angle)).sum();
+        double senSum = angleSin + neighbours.stream().mapToDouble(Particle::getAngleSin).sum();
+        double cosSum = angleCos + neighbours.stream().mapToDouble(Particle::getAngleCos).sum();
         double senAverage = senSum / (neighbours.size() + 1);
         double cosAverage = cosSum / (neighbours.size() + 1);
 
         angle = Math.atan2(senAverage, cosAverage) + Math.random() * n - (n/2);
+        this.angleCos = Math.cos(angle);
+        this.angleSin = Math.sin(angle);
     }
 
     public Integer normalizeAngle(int module) {
@@ -151,10 +157,18 @@ public class Particle {
     }
 
     public Double getVx(){
-        return this.speed * Math.cos(this.angle);
+        return this.speed * angleCos;
     }
 
     public Double getVy(){
-        return this.speed * Math.sin(this.angle);
+        return this.speed * angleSin;
+    }
+
+    public Double getAngleCos() {
+        return angleCos;
+    }
+
+    public Double getAngleSin() {
+        return angleSin;
     }
 }
