@@ -12,6 +12,7 @@ import java.util.Set;
 public class StatisticsMain {
     private static final String JSON_CONFIG_PATH = "./TP2/src/main/java/config.json";
     private static final String VA_BASE_PATH = "./TP2/src/main/resources/noiseAnalysis/vaVsNoise=";
+    private static final String ANIMATION_BASE_PATH = "./TP2/src/main/resources/noiseAnalysis/animation(noise=";
 
     public static void main(String[] args) {
 
@@ -21,6 +22,7 @@ public class StatisticsMain {
         Set<Particle> originalParticles = ParticlesUtils.generateRandomParticleFiles(
                 config.getDynamicFilePath(),
                 config.getStaticFilePath(),
+                config.getDynamicFilePathXyz(),
                 config.getN(),
                 config.getL(),
                 config.getParticleRadius(),
@@ -43,6 +45,8 @@ public class StatisticsMain {
 
         String vaFilePath;
 
+        String animationFilePath;
+
         for (double j = 0.0; j < 5.1; j += 0.2) {
 
             j = Math.round(j * 10.0) / 10.0;
@@ -54,12 +58,16 @@ public class StatisticsMain {
 
 
             vaFilePath = VA_BASE_PATH + j + ".txt";
+            animationFilePath = ANIMATION_BASE_PATH + j + ").xyz";
             final double noise = j;
             ParticlesUtils.createFile(vaFilePath);
+            ParticlesUtils.createFile(animationFilePath);
+            ParticlesUtils.writeParticlesToFileXyz(animationFilePath, 0, particles, config.getN(), config.getL());
             //System.out.print("Starting");
             for (int i = 1; i < config.getTimes(); i++) {
                 cellIndexMethod.run();
                 ParticlesUtils.writeVaToFile(vaFilePath, i, particles, config.getN(), config.getSpeed());
+                ParticlesUtils.writeParticlesToFileXyz(animationFilePath, i, particles, config.getN(), config.getL());
                 particles.forEach(p -> {
                     p.moveParticle(length);
                     p.updateAngle(noise);

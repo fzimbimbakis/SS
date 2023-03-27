@@ -18,6 +18,7 @@ public class BasicMain {
         Set<Particle> particles = ParticlesUtils.generateRandomParticleFiles(
                 config.getDynamicFilePath(),
                 config.getStaticFilePath(),
+                config.getDynamicFilePathXyz(),
                 config.getN(),
                 config.getL(),
                 config.getParticleRadius(),

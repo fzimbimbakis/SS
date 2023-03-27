@@ -37,7 +37,7 @@ public class ParticlesUtils {
                 return particles;
         }
 
-        public static Set<Particle> generateRandomParticleFiles(String dynamicPath, String staticPath, Integer N, Double L, Double particleRadius, Double speed) {
+        public static Set<Particle> generateRandomParticleFiles(String dynamicPath, String staticPath, String animationPath, Integer N, Double L, Double particleRadius, Double speed) {
 
 
                 //**    Write dynamic file      **********************************************
@@ -49,6 +49,10 @@ public class ParticlesUtils {
                 Set<Particle> particles = generateParticles(N, L, particleRadius, speed);
 
                 writeParticlesToFile(dynamicPath, 0, particles);
+
+                createFile(animationPath);
+
+                writeParticlesToFileXyz(animationPath, 0, particles, N, L);
 
                 //****************************************************************************
 

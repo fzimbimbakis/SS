@@ -15,7 +15,7 @@ def read_vas_file(name):
 
 if __name__ == '__main__':
     for j in [i / 10 for i in range(0, 51, 2)]:
-        time, va = read_vas_file("../resources/noiseAnalysis/vaVsNoise="+ str(2.0)+ ".txt")
+        time, va = read_vas_file("../resources/noiseAnalysis/vaVsNoise="+ str(j)+ ".txt")
         fig, ax = plt.subplots()
         ax.plot(time, va)
         plt.title('Va vs iterations with noise = ' + str(j))
