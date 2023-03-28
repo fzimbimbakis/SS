@@ -65,20 +65,21 @@ public class StatisticsMain {
             ParticlesUtils.writeParticlesToFileXyz(animationFilePath, 0, particles, config.getN(), config.getL());
             //System.out.print("Starting");
             FileWriter myWriter = new FileWriter(vaFilePath, true);
+            FileWriter myWriterXyz = new FileWriter(animationFilePath, true);
             for (int i = 1; i < config.getTimes(); i++) {
                 cellIndexMethod.run();
                 ParticlesUtils.writeVaToFile(myWriter, i, particles, config.getN(), config.getSpeed());
-//                ParticlesUtils.writeParticlesToFileXyz(animationFilePath, i, particles, config.getN(), config.getL());
+//                ParticlesUtils.writeParticlesToFileXyz(myWriterXyz, i, particles, config.getN(), config.getL());
                 particles.forEach(p -> {
                     p.moveParticle(length);
                     p.updateAngle(noise);
                 });
                 cellIndexMethod.clearNeighbours();
-                //System.out.print(".");
                 if(i % 100 == 0)
                     System.out.println(i);
             }
             myWriter.close();
+            myWriterXyz.close();
             System.out.println("Finished with noise= " + j);
         }
 

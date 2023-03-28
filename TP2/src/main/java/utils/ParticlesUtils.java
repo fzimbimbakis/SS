@@ -131,6 +131,19 @@ public class ParticlesUtils {
                 }
         }
 
+        public static void writeParticlesToFileXyz(FileWriter myWriter, Integer time, Set<Particle> particles, Integer N, Double L){
+                try {
+                        myWriter.write((N + 2) + "\n" + time + "\n");
+                        myWriter.write("0 0 0 0 0" + "\n");
+                        myWriter.write(L + " " + L +" 0 0 0" + "\n");
+                        for (Particle particle: particles)
+                                myWriter.write(particle.toString() + " " + particle.normalizeAngle(255) + "\n");
+                } catch (IOException e) {
+                        throw new RuntimeException("Error writing particles to file in ParticlesUtils.writeParticlesToFile.");
+                }
+        }
+
+
         private static Double calculateVa(Set<Particle> particles, Integer N , Double speed){
                 double sumVx = particles.stream().mapToDouble(Particle::getVx).sum();
                 double sumVy = particles.stream().mapToDouble(Particle::getVy).sum();
