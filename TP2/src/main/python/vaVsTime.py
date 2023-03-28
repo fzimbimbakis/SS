@@ -21,5 +21,6 @@ if __name__ == '__main__':
         plt.title('Va vs iterations with noise = ' + str(j))
         plt.xlabel('Iterations')
         plt.ylabel('Va')
+        ax.set_ylim([0.0, 1.1])
         plt.savefig("../resources/graphs/vaVsNoise="+str(j)+".png")
         plt.close()
