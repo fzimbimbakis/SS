@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Particle{
+- Integer id
+- Double x
+- Double y
+- Double radius
+- Set<Particle> neighbours
+- Double angle
+- Double speed
++ void moveParticle(Double L)
++ void updateAngle(Double n)
+}
+
+
+
+@enduml

@@ -16,12 +16,12 @@ def read_vas_file(name):
 if __name__ == '__main__':
 
     for j in [i / 10 for i in range(0, 51, 2)]:
-        time, va = read_vas_file("../resources/noiseAnalysis/N=4000/vaVsNoise="+ str(j)+ ".txt")
+        time, va = read_vas_file("../resources/noiseAnalysis/N=400/vaVsNoise="+ str(j)+ ".txt")
         fig, ax = plt.subplots()
         ax.plot(time, va)
-        plt.title('Va en relacion a las iteraciones con ruido = ' + str(j))
+        plt.title('Ruido = ' + str(j))
         plt.xlabel('Iteraciones')
         plt.ylabel('Va')
         ax.set_ylim([0.0, 1.1])
-        plt.savefig("../resources/graphs/N=4000/vaVsNoise="+str(j)+".png")
+        plt.savefig("../resources/graphs/animationImages/animation"+str(j)+".png")
         plt.close()

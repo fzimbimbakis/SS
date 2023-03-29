@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 matplotlib = "*"
 numpy = "*"
+ffmpeg = "*"
+imageio = "==2.4.1"
 
 [dev-packages]
 

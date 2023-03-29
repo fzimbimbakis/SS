@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "69da54607c84ae1f9d226a71168eda74e2fb8671d22cd4dcdcd4fe2abdc40b55"
+            "sha256": "29acd0c9b9c0f38acbb1fbe2952f4cb1e9d85a3eb3ec85aea9c1d9e9d7b2eaed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -86,13 +86,27 @@
             "markers": "python_version >= '3.6'",
             "version": "==0.11.0"
         },
+        "ffmpeg": {
+            "hashes": [
+                "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"
+            ],
+            "index": "pypi",
+            "version": "==1.4"
+        },
         "fonttools": {
             "hashes": [
-                "sha256:85245aa2fd4cf502a643c9a9a2b5a393703e150a6eaacc3e0e84bb448053f061",
-                "sha256:e2d9f10337c9e3b17f9bce17a60a16a885a7d23b59b7f45ce07ea643e5580439"
+                "sha256:64c0c05c337f826183637570ac5ab49ee220eec66cf50248e8df527edfa95aeb",
+                "sha256:9234b9f57b74e31b192c3fc32ef1a40750a8fbc1cd9837a7b7bfc4ca4a5c51d7"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==4.39.2"
+            "version": "==4.39.3"
+        },
+        "imageio": {
+            "hashes": [
+                "sha256:16b8077bc8a5fa7a58b3e744f7ecbb156d8c088132df31e0f4f546c98de3514a"
+            ],
+            "index": "pypi",
+            "version": "==2.4.1"
         },
         "kiwisolver": {
             "hashes": [

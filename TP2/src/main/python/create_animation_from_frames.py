@@ -2,9 +2,9 @@ import os
 import glob
 import imageio
 # Ruta a la carpeta que contiene las imágenes
-animation_frames_folder = '../resources/animation/case1/frames'
+animation_frames_folder = '../resources/graphs/animationImages'
 frames_files_name_format = 'animation*.png'
-animation_name = '../resources/animations/case1/animation.mp4'
+animation_name = '../resources/graphs/animation.mp4'
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     images = sorted(glob.glob(os.path.join(animation_frames_folder, frames_files_name_format)))
 
     # Crear la animación con las imágenes en la lista
-    with imageio.get_writer(animation_name, fps=30) as writer:
+    with imageio.get_writer(animation_name, fps=2) as writer:
         for image in images:
             # Leer la imagen
             img = imageio.imread(image)

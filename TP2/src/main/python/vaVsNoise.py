@@ -19,7 +19,7 @@ def read_vas_file(name):
 
 if __name__ == '__main__':
     list = ["N=40", "N=100", "N=400", "N=4000"]
-    plt.title('Va en funcion del ruido')
+    #plt.title('Va en funcion del ruido')
     plt.xlabel('Ruido')
     plt.ylabel('Va')
     label0 = False
