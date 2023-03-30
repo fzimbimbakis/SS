@@ -1,16 +1,5 @@
 # Sistemas de Simulación
 
-## Instalación 🛠️
+### [TP1: Cell Index Method](TP1)
 
-1. Instalar las librerias necesarias para ejecutar el programa. Debe ejecutar los siguientes comandos en su terminal
-```
-pip install matplotlib 
-```
-
-
-## Ejecución 🚀
-
-Para ejecutar el programa, simplemente se debe correr en la terminal el archivo main.py:
-```
- python graphics/TP1/main.py
-```
+### [TP2: Automatas Off-Latice](TP2)
