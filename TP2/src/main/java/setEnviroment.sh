@@ -1,3 +1,3 @@
-rm -r ../resources/dynamic.txt ../resources/static.txt ../resources/dynamic.xyz
-mkdir ../resources/noiseAnalysis ../resources/graphs
+mkdir ../resources/noise_analysis ../resources/density_analysis
+mkdir ../resources/noise_analysis/graphs ../resources/density_analysis/graphs
 

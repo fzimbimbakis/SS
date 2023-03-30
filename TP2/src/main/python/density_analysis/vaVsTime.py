@@ -17,13 +17,13 @@ graph_path = "../../resources/density_analysis/graphs"
 
 if __name__ == '__main__':
 
-    for j in range(1400, 1600, 200):
-        time, va = read_vas_file(va_vs_time_file_path + "vaVsTime_N_" + str(j) + ".txt")
+    for j in range(100, 1100, 200):
+        time, va = read_vas_file(va_vs_time_file_path + "vaVsTime(N=" + str(j) + ").txt")
         fig, ax = plt.subplots()
         ax.plot(time, va)
-        plt.title('Va en relacion a las iteraciones con N = ' + str(j))
+        plt.title('N = ' + str(j))
         plt.xlabel('Iteraciones')
         plt.ylabel('Va')
         ax.set_ylim([0.0, 1.1])
-        plt.savefig(graph_path + "/vaVsTime_N_" + str(j) + ".png")
+        plt.savefig(graph_path + "/vaVsTime(N=" + str(j) + ").png")
         plt.close()

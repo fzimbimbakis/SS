@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class MainWithThreads {
-    private static final String VA_BASE_PATH = "./TP2/src/main/resources/density_analysis/vaVsTime_N_";
-    private static final String ANIMATION_BASE_PATH = "./TP2/src/main/resources/density_analysis/animation_N_";
+    private static final String VA_BASE_PATH = "./TP2/src/main/resources/density_analysis/vaVsTime(N=";
+    private static final String ANIMATION_BASE_PATH = "./TP2/src/main/resources/density_analysis/animation(N=";
 
     public static class DensityAnalysis implements Runnable {
 
@@ -45,8 +45,8 @@ public class MainWithThreads {
         public void run() {
             try {
 
-                String vaFilePath = VA_BASE_PATH + this.N + ".txt";
-                String animationFilePath = ANIMATION_BASE_PATH + this.N + ".xyz";
+                String vaFilePath = VA_BASE_PATH + this.N + ").txt";
+                String animationFilePath = ANIMATION_BASE_PATH + this.N + ").xyz";
 
                 ParticlesUtils.createFile(vaFilePath);
                 ParticlesUtils.createFile(animationFilePath);
