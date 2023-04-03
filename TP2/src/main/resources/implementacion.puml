@@ -5,18 +5,16 @@ class Cell{
 - Set<Particle> particles
 }
 
-enum NEIGHBOURS_POSITION
 
 class Particle{
-- Integer id
 - Double x
 - Double y
 - Double radius
 - Set<Particle> neighbours
 - Double angle
-- Double angleCos;
-- Double angleSin;
 - Double speed
++ void moveParticle(Double L)
++ void updateAngle(Double n)
 
 }
 
@@ -35,7 +33,7 @@ CellIndexMethod <|-- CellIndexMethodPeriodic
 CellIndexMethod *-- Particle
 CellIndexMethod *-- Cell
 Cell *-- Particle
-Cell *-- NEIGHBOURS_POSITION
+
 
 
 @enduml

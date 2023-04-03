@@ -12,9 +12,9 @@ def read_vas_file(name):
 
 
 if __name__ == '__main__':
-    plt.xlabel('Iteraciones')
-    plt.ylabel('Va')
-    plt.set_ylim([0.0, 1.1])
+    plt.xlabel('Tiempo')
+    plt.ylabel('Polarización')
+    plt.ylim([0.0, 1.1])
 
     time, va = read_vas_file("../../resources/noise_analysis/vaVsTime(noise=0.2).txt")
     plt.plot(time, va, "g", label="η = 0.6")

@@ -11,7 +11,7 @@ def read_vas_file(name):
     with open(name) as archivo:
         i=1
         for linea in archivo:
-            if i > 900:
+            if i > 300:
                 x_aux, y_aux= linea.split()
                 list_x.append(int(x_aux))
                 list_y.append(float(y_aux))
@@ -24,7 +24,7 @@ def read_vas_file(name):
 if __name__ == '__main__':
     #plt.title('Va en funcion del ruido')
     plt.xlabel('Ruido')
-    plt.ylabel('Va')
+    plt.ylabel('Polarización')
     label0 = False
     label1 = False
     label2 = False
